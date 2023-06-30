@@ -1,4 +1,5 @@
-// Log In
+// Davit Shirakyan
+// Test 1
 function setupLogin() {
     cy.visit('https://dev-photo.occo.io/login.html')
     cy.get('#username').type('davit_shirakyan@sfu.ca')
@@ -7,7 +8,7 @@ function setupLogin() {
     cy.wait(3000)
     cy.get('#select2-catSelId-container').click()
     cy.get('.select2-search__field').type('vgsu{enter}')
-    cy.wait(3000)
+    cy.wait(2000)
 }
 
 function testPrint() {
@@ -44,6 +45,6 @@ function testReset(){
 it('Google Search', ()=>{
     setupLogin()
     testExpand()
-    testPrint()    // Test fails if testPrint goes before
+    testPrint()
     testReset()
 })
