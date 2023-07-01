@@ -1,0 +1,52 @@
+function setupLogin() {
+    cy.visit('https://dev-photo.occo.io/login.html');
+    cy.get('#username').type('davit_shirakyan@sfu.ca');
+    cy.get('#password').type('Davit@2004');
+    cy.get('#login').click();
+    cy.wait(3000);
+    cy.get('#select2-catSelId-container').click();
+    cy.get('.select2-search__field').type('vgsu{enter}');
+    cy.wait(3000);
+  }
+
+function openLinkTest(){
+    cy.get('#shareCol > .card-header').click()
+    // Select the dropdown and iterate through each option
+    cy.get('#albumTypeLinks').then(($dropdown) => {
+        const options = $dropdown.find('option');
+    
+        for (let i = 0; i < options.length - 1; i++) {
+          const url = options[i].value;
+    
+            cy.visit(url);
+            cy.url().then((currentUrl) => {
+                const expectedBaseUrl = url.split('#')[0].trim(); // Extract and trim base URL without the fragment identifier
+                const currentBaseUrl = currentUrl.split('#')[0].trim(); // Extract and trim current URL without the fragment identifier
+                // expect(currentBaseUrl).to.equal(expectedBaseUrl);
+            });
+            cy.wait(2000);
+            cy.go('back');
+        }
+
+        const url = options[options.length - 1].getAttribute('value');
+        cy.visit(url);
+        cy.url().then((currentUrl) => {
+          cy.wait(1000);
+          cy.origin('https://dev.occo.net', () => {
+                cy.get('#evnt').type('vgsu');
+                cy.contains('button.btn-default', 'GO!').click();
+                cy.wait(2000);
+                cy.go('back');
+            })
+
+          const expectedBaseUrl = url.split('#')[0].trim();
+          const currentBaseUrl = currentUrl.split('#')[0].trim();
+          // expect(currentBaseUrl).to.equal(expectedBaseUrl);
+        });
+      });
+}
+  
+  it('Google Search', ()=>{
+    setupLogin()
+    openLinkTest()
+})
