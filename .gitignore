@@ -1,0 +1,6 @@
+logs/
+main.log
+*.log
+*.ts
+*.tsx
+node_modules/
