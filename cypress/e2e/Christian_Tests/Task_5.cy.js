@@ -12,7 +12,9 @@ it('Task 5 (Christian)', () => {
         cy.on('window:confirm', () => true);
         cy.url().should('contain', 'new-reg');
     });
+    cy.wait(500);
     cy.get('#createAtt').click();
+    cy.wait(500); 
     cy.get('#agree-privacy').click('left').then(() => {
         cy.get('#createAtt').click();
     });
@@ -20,7 +22,7 @@ it('Task 5 (Christian)', () => {
     let dateNow;
     cy.intercept('**.jpg').as('upload');
     cy.get(':nth-child(1) > .btn').selectFile(file).then(() => {
-        dateNow = getDateNow(new Date()); // look at cypress/support/commands.js
+        dateNow = getDateNow(new Date()); // look at ./funcs.js file
     });
     cy.wait('@upload', { timeout: tmout });
     cy.get('.gallery__item-img', { timeout: tmout }).then((img) =>  {
