@@ -2,7 +2,7 @@
 it ('Task 8 (Christian)', () => {
     const tmout = 15000;
     const file = 'cypress/fixtures/count_dooku.jpg';
-    const event = 'etes';
+    const event = 'rnsw';
     cy.visit('https://dev-webapp.storibox.com?app=webapp&eName=' + event + '&opts=1/');
     cy.get('#attendeeName').type('Bob');
     cy.get('#attendeeEmail').type('foo@bar.com');
