@@ -10,7 +10,7 @@ it('Task 3 (Christian)', () => {
     cy.url().should('contain', 'attId=' + id, { timeout: tmout });
     let dateNow;
     cy.get('#labelUploadImage', { timeout: tmout }).selectFile(file).then(() => {
-        dateNow = getDateNow(new Date());
+        dateNow = getDateNow(new Date());// import ./funcs.js
     }).then(() => {cy.intercept('**.jpg').as('upload')});
     cy.wait('@upload', { timeout: tmout });
     cy.get('.last', { timeout: tmout }).click().should((img) => {

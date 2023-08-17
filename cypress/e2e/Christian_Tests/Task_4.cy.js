@@ -4,6 +4,21 @@ it ('Task 4 (Christian)', () => {
     const id = 'zyxw-abcd-6789';
     cy.visit('https://dev.storibox.com');
     cy.get('#scanCardInput').type(id + '{Enter}');
+    cy.get('#attendeeName').then((name) => {
+        if (name.is(':visible')) {
+            cy.wrap(name).type('Bob');
+        }
+    });
+    cy.get('#attendeeEmail').then((email) => {
+        if (email.is(':visible')) {
+            cy.wrap(email).type('foo@bar.com');
+        }
+    });
+    cy.get('#saveAttEmail').then((GO) => {
+        if (GO.is(':visible')) {
+            cy.wrap(GO).click();
+        }
+    });
     cy.intercept('https://www.sandbox.paypal.com/smart/api/**').as('paypal');
     cy.wait('@paypal', { timeout: tmout }).then((interception) => {
         expect(interception.response.statusCode).to.be.equal(200);

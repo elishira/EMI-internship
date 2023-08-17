@@ -28,7 +28,7 @@ it ('Task 7 (Christian)', () => {
         .click({ multiple: true, force: true }).then(() => {
             cy.get('#setFilter', { timeout: tmout }).click();
         });
-    });       
+    });
     cy.wait(`@load`);
     cy.url().should('contain', 'range=Last30Days', { timeout: tmout });
 
