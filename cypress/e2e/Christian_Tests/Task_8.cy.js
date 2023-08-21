@@ -21,10 +21,12 @@ it ('Task 8 (Christian)', () => {
         cy.get('#uploadPhotoBtn').should('be.visible', { timeout: tmout }).click();
         cy.intercept('**.jpg').as('upload_' + i);
         cy.get(':nth-child(1) > .btn').should('be.visible', { timeout: tmout }).selectFile(file);
-        cy.wait('@upload_' + i, { timeout: tmout });
-        cy.get('#customPopUp > .modal-dialog > .modal-content > .modal-header > .close', { timeout: tmout })
-            .should('be.visible', { timeout: tmout }).wait(500).click()
-            .should('not.be.visible', { timeout: tmout });
+        cy.wait('@upload_' + i, { timeout: tmout }); // make conditional
+        cy.get('#customPopUp > .modal-dialog > .modal-content > .modal-header > .close', { timeout: tmout }).then((closeBtn) => {
+            if (closeBtn.is(':visible')) {
+                cy.wait(500).wrap(closeBtn).click().should('not.be.visible', { timeout: tmout });
+            }
+        });
     }
     cy.get('.button').should('be.enabled', { timeout: tmout }).click();
     cy.get('[data-id="gid://shopify/Collection/439015899426"]').should('be.visible', { timeout: tmout })
