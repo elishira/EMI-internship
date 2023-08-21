@@ -7,6 +7,18 @@ it('Task 3 (Christian)', () => {
     const file = 'cypress/fixtures/count_dooku.jpg';
     cy.visit('https://dev.storibox.com');
     cy.get('#scanCardInput').type(id + '{Enter}');
+    cy.wait(1000);
+    cy.get('body').then((body) => {
+        if (body.find('#attendeeName').length > 0) {
+            cy.get('#attendeeName').then((name) => {
+                if (name.is(':visible')) {
+                    cy.wrap(name).type('Bob');
+                    cy.get('#attendeeEmail').type('foo@bar.com');
+                    cy.get('#saveAttEmail').click();
+                }
+            });
+        }
+    });
     cy.url().should('contain', 'attId=' + id, { timeout: tmout });
     let dateNow;
     cy.get('#labelUploadImage', { timeout: tmout }).selectFile(file).then(() => {
