@@ -16,7 +16,7 @@ it('passcode test', () => {
     // click out of dropdown
     cy.get('.icon-caret').click();
     // fill in email address to receive passcode
-    cy.get('#genAttEmail').type("eliziko@hotmail.com");
+    cy.get('#genAttEmail').type("andranik@occo.io");
     // fill in the number of passcode to generate
     cy.get('#genAttCount').type(10);
     // fill in album access url
