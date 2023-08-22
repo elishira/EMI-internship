@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "clipboardy": "^3.0.0",
-    "cypress": "^12.17.3",
+    "cypress": "^12.17.4",
     "react": "^18.2.0"
   },
   "browser": {

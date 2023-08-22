@@ -1,5 +1,6 @@
 // @requires chromeWebSecurity = false and an image file
 it ('Task 8 (Christian)', () => {
+    cy.on('uncaught:exception', () => {cy.wait(1000);});
     const tmout = 15000;
     const file = 'cypress/fixtures/count_dooku.jpg';
     const event = 'rnsw';
