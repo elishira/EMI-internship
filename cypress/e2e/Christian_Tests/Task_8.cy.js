@@ -18,7 +18,7 @@ it ('Task 8 (Christian)', () => {
     cy.get('#agree-privacy').click('left').then(() => {
         cy.get('#createAtt').click();
     });
-    for (let i = 0; i < 2; i++) { // number of uploads
+    for (let i = 0; i < 3; i++) { // number of uploads
         cy.get('#uploadPhotoBtn').should('be.visible', { timeout: tmout }).click();
         cy.intercept('**.jpg').as('upload_' + i);
         cy.get(':nth-child(1) > .btn').should('be.visible', { timeout: tmout }).selectFile(file);
@@ -49,8 +49,7 @@ it ('Task 8 (Christian)', () => {
     cy.get('select[name="zone"]').should('be.visible', { timeout: tmout }).select('Florida'); // State
     cy.get('[placeholder="ZIP code"]').should('be.visible', { timeout: tmout }).type('32807'); // ZIP code
     cy.contains('Complete order').should('be.visible', { timeout: tmout }).click();
-    cy.wait(1000);
-    cy.get('.os-order-number').should('be.visible', { timeout: tmout });
+    cy.get('.os-order-number').should('be.visible', { timeout: 25000 });
     cy.get('.thank-you__additional-content > a').should('be.visible', { timeout: tmout }).click();
     cy.get('.button').should('be.visible', { timeout: tmout });
 
