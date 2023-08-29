@@ -1,41 +1,23 @@
-// works
-
 it('passcode test', () => {
-    // login
     cy.authAdminConsole();
-    // click on passcode tab
-    cy.get('#templateEventTab > :nth-child(4) > .nav-link').click();
-    // get initial row count
-    cy.get('#passCodes_table').find('tr').its('length').as('initialRowCount')
-    // click generate passcode
-    cy.get('#generatePassCodesButton').click();
-    // fill in event name
-    cy.get('.placeholder').type('Event1 (etes)');
-    // checkbox select event name from dropdown
-    cy.get('ul > :nth-child(1) > label').click();
-    // click out of dropdown
-    cy.get('.icon-caret').click();
-    // fill in email address to receive passcode
-    cy.get('#genAttEmail').type("andranik@occo.io");
-    // fill in the number of passcode to generate
-    cy.get('#genAttCount').type(10);
-    // fill in album access url
-    cy.get('#pcUrlPrefix').type("https://dev/storibox.com");
-    // click generate
-    cy.get('#genAttendeeAct').click();
-    cy.wait(4000);
-    // close pop up
-    cy.get('#messagePopUp > .modal-dialog > .modal-content > .modal-footer > .btn').click();
-
-    // click on event
-    cy.get('#templateEventTab > :nth-child(1) > .nav-link').click();
-    // clikc back to passcode
-    cy.get('#templateEventTab > :nth-child(4) > .nav-link').click();
-
-    // makes sure an item was added to the table 
-    cy.get('@initialRowCount').then((initialRowCount) => {
-        cy.get('#passCodes_table')
+    const tmout = 25000;
+    cy.get('#templateEventTab > :nth-child(4) > .nav-link', {timeout: tmout}).click();
+    cy.get('#passCodes_table', {timeout: tmout}).find('tr', {timeout: tmout}).its('length').as('initialRowCount')
+    cy.get('#generatePassCodesButton', {timeout: tmout}).click();
+    cy.get('.placeholder', {timeout: tmout}).type('Event1 (etes)');
+    cy.get('ul > :nth-child(1) > label', {timeout: tmout}).click();
+    cy.get('.icon-caret', {timeout: tmout}).click();
+    cy.get('#genAttEmail', {timeout: tmout}).type("eliziko@hotmail.com");
+    cy.get('#genAttCount', {timeout: tmout}).type(10);
+    cy.get('#pcKioskExpMin', {timeout: tmout}).type(10);
+    cy.get('#pcUrlPrefix', {timeout: tmout}).type("https://dev/storibox.com");
+    cy.get('#genAttendeeAct', {timeout: tmout}).click();
+    cy.get('#messagePopUp > .modal-dialog > .modal-content > .modal-footer > .btn', {timeout: tmout}).click();
+    cy.get('#templateEventTab > :nth-child(1) > .nav-link', {timeout: tmout}).click();
+    cy.get('#templateEventTab > :nth-child(4) > .nav-link', {timeout: tmout}).click();
+    cy.get('@initialRowCount', {timeout: tmout}).then((initialRowCount) => {
+        cy.get('#passCodes_table', {timeout: tmout})
             .find('tr')
-            .should('have.length', initialRowCount + 1)
+            .should('have.length', initialRowCount + 1, {timeout: tmout})
     })
 })
