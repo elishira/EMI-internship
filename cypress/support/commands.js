@@ -17,14 +17,25 @@ Cypress.Commands.add('authAdminConsole', (event) => {
     cy.get('#username').type(Cypress.env('username'), { log: false });
     cy.get('#password').type(Cypress.env('password'), { log: false });
     cy.get('#login').click();
+    cy.wait(3000);
     cy.url().should('be.equal', 'https://dev-photo.occo.io/index.html#range=Last24Hours', { timeout: tmout });
     cy.get('#galleryCont').should('have.class', 'justified-gallery');
-
     if (event !==  undefined) {
       cy.get('#select2-catSelId-container', { timeout: tmout }).should('be.visible', { timeout: tmout })
         .type(event + '{Enter}');
     }
 });
+
+Cypress.Commands.add('authAdminConsoleDevAdmin', (event) => {
+  const tmout = 15000;
+  cy.visit('https://dev-admin.occo.io/');
+  cy.get('#username').type(Cypress.env('username'), { log: false });
+  cy.get('#password').type(Cypress.env('password'), { log: false });
+  cy.get('#login').click();
+  cy.wait(3000);
+  cy.url().should('be.equal', 'https://dev-admin.occo.io/admin.html');
+});
+
 
 // Cypress.Commands.add('closeWindow', ()=>{
 //     return new Promise(resolve=>{
