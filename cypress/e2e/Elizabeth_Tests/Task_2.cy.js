@@ -1,5 +1,3 @@
-// not working
-// number at the end don't match up
 it('case 4 (test in the kiosk)', () => {
     cy.on('uncaught:exception', () => { cy.wait(1000); });
     cy.authAdminConsole();
