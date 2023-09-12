@@ -2,9 +2,9 @@ it('case 1 (dev-admin.occo)', () => {
     cy.authAdminConsoleDevAdmin();
     const tmout = 20000;
     cy.get('#cloudProcessing > a', { timeout: tmout }).click()
-    cy.get('#deleteBg_196', { timeout: tmout }).click()
-    // get rid of this hardcoded value
-    cy.get(':nth-child(53) > :nth-child(6) > .dropdown > .dropdown-menu > :nth-child(1) > a', { timeout: tmout }).click()
+    cy.get(':nth-child(1) > :nth-child(6) > .dropdown', { timeout: tmout }).click()
+    cy.get(':nth-child(1) > :nth-child(6) > .dropdown > .dropdown-menu > :nth-child(1) > a', { timeout: tmout }).click()
+    
     let activated = false;
     let pipelineName;
     cy.get('#bgName').invoke('val').then((text) => {
@@ -17,8 +17,9 @@ it('case 1 (dev-admin.occo)', () => {
             cy.get('#bgName', { timeout: tmout }).type('1')
             cy.get('#updateBg', { timeout: tmout }).click()
             cy.get('#deleteBg_196', { timeout: tmout }).click()
-
-            cy.get(':nth-child(53) > :nth-child(6) > .dropdown > .dropdown-menu > :nth-child(1) > a', { timeout: tmout }).click()
+            cy.get(':nth-child(1) > :nth-child(6) > .dropdown', { timeout: tmout }).click()
+            cy.get(':nth-child(1) > :nth-child(6) > .dropdown > .dropdown-menu > :nth-child(1) > a', { timeout: tmout }).click()
+            
             cy.get('#bgName').invoke('val').should('eq', pipelineName + '1');
             if (activated) {
                 cy.get('#useRemoveBgBackup').should('not.be.checked', { timeout: tmout })
@@ -27,4 +28,6 @@ it('case 1 (dev-admin.occo)', () => {
             }
         });
     });
+
+
 })
