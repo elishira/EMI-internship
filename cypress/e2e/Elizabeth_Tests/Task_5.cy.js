@@ -1,4 +1,4 @@
-it('case 1 (dev-admin.occo)', () => {
+it('Task_5 (edit pipeline test)', () => {
     cy.authAdminConsoleDevAdmin();
     const tmout = 20000;
     cy.get('#cloudProcessing > a', { timeout: tmout }).click()
