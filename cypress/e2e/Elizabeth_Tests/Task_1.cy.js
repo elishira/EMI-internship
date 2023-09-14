@@ -1,4 +1,4 @@
-it('passcode test', () => {
+it('Task_1 (passcode test)', () => {
     cy.authAdminConsole();
     const tmout = 25000;
     cy.get('#templateEventTab > :nth-child(4) > .nav-link', { timeout: tmout }).click();
@@ -13,7 +13,6 @@ it('passcode test', () => {
     cy.get('@rowCount', { timeout: tmout }).then((rowCount) => {
         initialRowCount = rowCount;
     })
-
     cy.get('#generatePassCodesButton', { timeout: tmout }).click();
     cy.get('.placeholder', { timeout: tmout }).type('Event1 (etes)');
     cy.get('ul > :nth-child(1) > label', { timeout: tmout }).click();
@@ -29,5 +28,4 @@ it('passcode test', () => {
     cy.get('@rowCount', { timeout: tmout }).then((rowCount) => {
         expect(initialRowCount + 1).to.equal(rowCount);
     })
-
 })
