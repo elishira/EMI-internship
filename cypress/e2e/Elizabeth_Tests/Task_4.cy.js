@@ -1,4 +1,4 @@
-it('occo.io -> test print, share, and download', () => {
+it('Task_4 (test print, share, and download, occo.io)', () => {
   cy.on('uncaught:exception', () => { cy.wait(1000); });
   cy.authAdminConsole();
   const tmout = 25000;
